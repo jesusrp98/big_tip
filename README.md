@@ -7,8 +7,7 @@
 
 Display tips to your users using a custom icon and some text down below.
 
-This package aims to provide you a simple way to communicate information to the user, using a simple icon and a text message.
-You can also customize color, size and text style.
+This package aims to provide you a simple way to communicate information to the user, using a simple icon and a text message. You can also customize color, size and text style.
 
 ## Example
 
