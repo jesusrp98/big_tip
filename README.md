@@ -9,6 +9,10 @@ Display tips to your users using a custom icon and some text down below.
 
 This package aims to provide you a simple way to communicate information to the user, using a simple icon and a text message. You can also customize color, size and text style.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jesusrp98/big_tip/master/screenshots/0.png" width="256">
+</p>
+
 ## Example
 
 If you want to take a deeper look at the example, take a look at the [example](https://github.com/jesusrp98/big_tip/tree/master/example) folder provided with the project.
