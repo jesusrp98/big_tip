@@ -5,9 +5,13 @@
 [![Patreon](https://img.shields.io/badge/Support-Patreon-orange.svg?style=for-the-badge)](https://www.patreon.com/jesusrp98)
 [![Stars](https://img.shields.io/github/stars/jesusrp98/big_tip.svg?style=for-the-badge)](https://github.com/jesusrp98/big_tip/stargazers)
 
-Display tips to your users using a custom icon and some text down below.
+Display information to the user using a custom layout, that can be actionable.
 
-This package aims to provide you a simple way to communicate information to the user, using a simple icon and a text message. You can also customize color, size and text style.
+This package aims to provide you a simple way to communicate information to the user, using custom views and a texts message. You can also customize colors, sizes and text style.
+
+It displays a custom widget, usually a `Icon` widget, followed by a title and a subtitle text. If the `child` widget provided is in fact an `Icon`, a default icon theme will be applied, setting its size to `100`, and using the caption text style's color to fill it.
+
+There's also an optional action parameter, which provides the ability to call functions via a customizable button.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/jesusrp98/big_tip/master/screenshots/0.png" width="256">
@@ -19,12 +23,21 @@ If you want to take a deeper look at the example, take a look at the [example](h
 
 ```
 BigTip(
-  icon: Icons.cake,
-  message: 'The cake is a lie',
-  messageStyle: TextStyle(
-    fontSize: 27,
-    fontStyle: FontStyle.italic,
-  ),
+  child: Icon(Icons.cake),
+  title: 'The cake is a lie',
+  subtitle: 'Is this a Portal reference?',
+),
+```
+
+You can also provide the user with the ability to interact with the view, via a `FlatButton` widget. To do that, you can make use of the `action` and `actionCallback` parameters of the widget. By default, this widget will be placed at the bottom of the view.
+
+```
+BigTip(
+  child: Icon(Icons.cake),
+  title: 'The cake is a lie',
+  subtitle: 'Is this a Portal reference?',
+  action: 'CALL GABEN',
+  actionCallback: () => print('Ding dong'),
 ),
 ```
 

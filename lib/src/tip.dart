@@ -8,7 +8,7 @@ class BigTip extends StatelessWidget {
   /// Widget representing the main information point of the view.
   ///
   /// If this parameters holds a [Icon] widget, an automatic theme will be applied,
-  /// setting 100 as its size, and using the caption text style's color by default.
+  /// setting its size to 100, and using the caption text style's color by default.
   final Widget child;
 
   /// Space between the [child] and the text. Default value is 22.
