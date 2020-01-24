@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        accentColor: Colors.orange,
       ),
       home: HomePage(),
     );
@@ -24,12 +24,11 @@ class HomePage extends StatelessWidget {
         title: Text('Big tip'),
       ),
       body: BigTip(
-        icon: Icons.cake,
-        message: 'The cake is a lie',
-        messageStyle: TextStyle(
-          fontSize: 27,
-          fontStyle: FontStyle.italic,
-        ),
+        child: Icon(Icons.cake),
+        title: 'The cake is a lie',
+        subtitle: 'Is this a Portal reference?',
+        action: 'CALL GABEN',
+        actionCallback: () => print('Ding dong'),
       ),
     );
   }

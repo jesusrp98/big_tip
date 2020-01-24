@@ -1,11 +1,11 @@
 name: big_tip
-description: Display tips to your users using a custom icon and some text down below
-version: 0.1.0
+description: Display information to the user using a custom layout, that can be actionable
+version: 1.0.0
 author: Jesus Rodriguez <jesusrope98@outlook.com>
 homepage: https://github.com/jesusrp98/big_tip
 
 environment:
-  sdk: ">=2.5.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:

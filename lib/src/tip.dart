@@ -1,41 +1,57 @@
 import 'package:flutter/material.dart';
 
-/// This simple widget aims to show the user a [message], coupled with a huge [icon] above it.
+/// Widget that will inform the user about a specific topic.
+/// Information could be transmitted via text, icons or any other widget.
+///
+/// Also, the user could interact with this view using the [actionCallback].
 class BigTip extends StatelessWidget {
-  /// Main iicon that will render in the center of the screen.
-  final IconData icon;
+  /// Widget representing the main information point of the view.
+  ///
+  /// If this parameters holds a [Icon] widget, an automatic theme will be applied,
+  /// setting 100 as its size, and using the caption text style's color by default.
+  final Widget child;
 
-  /// Size of the [icon]. Default value is 100.
-  final double iconSize;
-
-  /// Color of the [icon]. Default is the caption color of the current theme.
-  final Color iconColor;
-
-  /// Space between the [icon] and the [message] widgets. Default value is 27.
+  /// Space between the [child] and the text. Default value is 22.
   final double space;
 
-  /// Padding of this widget.
+  /// Outter padding of the view. Default is 32.
   final EdgeInsets padding;
 
-  /// Text message that will render below the main [icon].
-  final String message;
+  /// Main title text of the view.
+  final String title;
 
-  /// Text style attached of the [message] property.
-  final TextStyle messageStyle;
+  /// Secondary text of the view.
+  final String subtitle;
+
+  /// Label that will inform the user about the action
+  /// the view can perform, via the [actionCallback] parameter.
+  final String action;
+
+  /// Text style attached of the [title] property.
+  final TextStyle titleStyle;
+
+  /// Text style attached of the [subtitle] property.
+  final TextStyle subtitleStyle;
+
+  /// Text style attached of the [action] property.
+  final TextStyle actionStyle;
+
+  /// Action that will be performed when the user clicks the action button.
+  final Function() actionCallback;
 
   const BigTip({
     Key key,
-    @required this.icon,
-    this.iconSize = 100,
-    this.iconColor,
-    this.space = 27,
+    @required this.child,
+    this.space = 22,
     this.padding,
-    @required this.message,
-    this.messageStyle,
-  })  : assert(icon != null),
-        assert(iconSize != null),
-        assert(space != null),
-        assert(message != null),
+    this.title,
+    this.subtitle,
+    this.action,
+    this.titleStyle,
+    this.subtitleStyle,
+    this.actionStyle,
+    this.actionCallback,
+  })  : assert(action != null || actionCallback == null),
         super(key: key);
 
   @override
@@ -46,17 +62,40 @@ class BigTip extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Icon(
-              icon,
-              size: iconSize,
-              color: iconColor ?? Theme.of(context).textTheme.caption.color,
+            if (action != null) Flexible(child: SizedBox.expand()),
+            IconTheme.merge(
+              data: Theme.of(context).iconTheme.copyWith(
+                    color: Theme.of(context).textTheme.caption.color,
+                    size: 100,
+                  ),
+              child: child,
             ),
-            SizedBox(height: space),
-            Text(
-              message,
-              textAlign: TextAlign.center,
-              style: messageStyle ?? TextStyle(fontSize: 18),
-            ),
+            if (title != null || subtitle != null) SizedBox(height: space ?? 0),
+            if (title != null)
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: titleStyle ?? Theme.of(context).textTheme.title,
+              ),
+            if (subtitle != null) ...[
+              SizedBox(height: 8),
+              Text(
+                subtitle,
+                textAlign: TextAlign.center,
+                style: subtitleStyle ?? Theme.of(context).textTheme.subhead,
+              ),
+            ],
+            if (action != null) ...[
+              Flexible(child: SizedBox.expand()),
+              FlatButton(
+                onPressed: actionCallback,
+                textColor: Theme.of(context).accentColor,
+                child: Text(
+                  action,
+                  style: actionStyle ?? TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
           ],
         ),
       ),
