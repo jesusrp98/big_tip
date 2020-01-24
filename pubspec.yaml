@@ -1,7 +1,6 @@
 name: big_tip
 description: Display information to the user using a custom layout, that can be actionable
 version: 1.0.0
-author: Jesus Rodriguez <jesusrope98@outlook.com>
 homepage: https://github.com/jesusrp98/big_tip
 
 environment:
