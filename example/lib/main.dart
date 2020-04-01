@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'big_tip',
       theme: ThemeData(
         accentColor: Colors.orange,
       ),
@@ -25,9 +25,9 @@ class HomePage extends StatelessWidget {
       ),
       body: BigTip(
         child: Icon(Icons.cake),
-        title: 'The cake is a lie',
-        subtitle: 'Is this a Portal reference?',
-        action: 'CALL GABEN',
+        title: Text('The cake is a lie'),
+        subtitle: Text('Is this a Portal reference?'),
+        action: Text('CALL GABEN'),
         actionCallback: () => print('Ding dong'),
       ),
     );

@@ -14,44 +14,37 @@ class BigTip extends StatelessWidget {
   /// Space between the [child] and the text. Default value is 22.
   final double space;
 
+  /// Space between [tile] and [subtitle] widgets. Default value is 8.
+  final double textSpace;
+
   /// Outter padding of the view. Default is 32.
   final EdgeInsets padding;
 
-  /// Main title text of the view.
-  final String title;
+  /// Main title widget of the view. Usually a [Text] widget.
+  final Widget title;
 
-  /// Secondary text of the view.
-  final String subtitle;
+  /// Secondary widget of the view. Usually a [Text] widget.
+  final Widget subtitle;
 
-  /// Label that will inform the user about the action
+  /// Widget that will inform the user about the action
   /// the view can perform, via the [actionCallback] parameter.
-  final String action;
-
-  /// Text style attached of the [title] property.
-  final TextStyle titleStyle;
-
-  /// Text style attached of the [subtitle] property.
-  final TextStyle subtitleStyle;
-
-  /// Text style attached of the [action] property.
-  final TextStyle actionStyle;
+  final Widget action;
 
   /// Action that will be performed when the user clicks the action button.
   final Function() actionCallback;
 
   const BigTip({
     Key key,
-    @required this.child,
+    this.child,
     this.space = 22,
+    this.textSpace = 8,
     this.padding,
     this.title,
     this.subtitle,
     this.action,
-    this.titleStyle,
-    this.subtitleStyle,
-    this.actionStyle,
     this.actionCallback,
   })  : assert(action != null || actionCallback == null),
+        assert(child != null || title != null || subtitle != null),
         super(key: key);
 
   @override
@@ -70,29 +63,27 @@ class BigTip extends StatelessWidget {
                   ),
               child: child,
             ),
-            if (title != null || subtitle != null) SizedBox(height: space ?? 0),
+            if (title != null || subtitle != null) SizedBox(height: space),
             if (title != null)
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: titleStyle ?? Theme.of(context).textTheme.title,
+              DefaultTextStyle(
+                style: Theme.of(context).textTheme.headline6,
+                child: title,
               ),
             if (subtitle != null) ...[
-              SizedBox(height: 8),
-              Text(
-                subtitle,
-                textAlign: TextAlign.center,
-                style: subtitleStyle ?? Theme.of(context).textTheme.subhead,
+              if (title != null) SizedBox(height: textSpace),
+              DefaultTextStyle(
+                style: Theme.of(context).textTheme.subtitle1,
+                child: subtitle,
               ),
             ],
             if (action != null) ...[
               Flexible(child: SizedBox.expand()),
-              FlatButton(
-                onPressed: actionCallback,
-                textColor: Theme.of(context).accentColor,
-                child: Text(
-                  action,
-                  style: actionStyle ?? TextStyle(fontSize: 16),
+              DefaultTextStyle(
+                style: Theme.of(context).textTheme.subtitle1,
+                child: FlatButton(
+                  textColor: Theme.of(context).accentColor,
+                  onPressed: actionCallback,
+                  child: action,
                 ),
               ),
             ],
