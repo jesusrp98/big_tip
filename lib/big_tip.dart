@@ -66,20 +66,20 @@ class BigTip extends StatelessWidget {
             if (title != null || subtitle != null) SizedBox(height: space),
             if (title != null)
               DefaultTextStyle(
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.title,
                 child: title,
               ),
             if (subtitle != null) ...[
               if (title != null) SizedBox(height: textSpace),
               DefaultTextStyle(
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.subhead,
                 child: subtitle,
               ),
             ],
             if (action != null) ...[
               Flexible(child: SizedBox.expand()),
               DefaultTextStyle(
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.subhead,
                 child: FlatButton(
                   textColor: Theme.of(context).accentColor,
                   onPressed: actionCallback,
