@@ -56,14 +56,16 @@ class BigTip extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             if (action != null) Flexible(child: SizedBox.expand()),
-            IconTheme.merge(
-              data: Theme.of(context).iconTheme.copyWith(
-                    color: Theme.of(context).textTheme.caption.color,
-                    size: 100,
-                  ),
-              child: child,
-            ),
-            if (title != null || subtitle != null) SizedBox(height: space),
+            if (child != null)
+              IconTheme.merge(
+                data: Theme.of(context).iconTheme.copyWith(
+                      color: Theme.of(context).textTheme.caption.color,
+                      size: 100,
+                    ),
+                child: child,
+              ),
+            if (child != null && (title != null || subtitle != null))
+              SizedBox(height: space),
             if (title != null)
               DefaultTextStyle(
                 style: Theme.of(context).textTheme.title,
@@ -78,13 +80,12 @@ class BigTip extends StatelessWidget {
             ],
             if (action != null) ...[
               Flexible(child: SizedBox.expand()),
-              DefaultTextStyle(
-                style: Theme.of(context).textTheme.subhead,
-                child: FlatButton(
-                  textColor: Theme.of(context).accentColor,
-                  onPressed: actionCallback,
-                  child: action,
-                ),
+              FlatButton(
+                textColor: action is Text && (action as Text).style != null
+                    ? (action as Text).style.color
+                    : Theme.of(context).accentColor,
+                onPressed: actionCallback,
+                child: action,
               ),
             ],
           ],
