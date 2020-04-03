@@ -15,7 +15,7 @@ class BigTip extends StatelessWidget {
   final double space;
 
   /// Space between [tile] and [subtitle] widgets. Default value is 8.
-  final double textSpace;
+  final double subtitleSpace;
 
   /// Outter padding of the view. Default is 32.
   final EdgeInsets padding;
@@ -37,7 +37,7 @@ class BigTip extends StatelessWidget {
     Key key,
     this.child,
     this.space = 22,
-    this.textSpace = 8,
+    this.subtitleSpace = 8,
     this.padding,
     this.title,
     this.subtitle,
@@ -72,7 +72,7 @@ class BigTip extends StatelessWidget {
                 child: title,
               ),
             if (subtitle != null) ...[
-              if (title != null) SizedBox(height: textSpace),
+              if (title != null) SizedBox(height: subtitleSpace),
               DefaultTextStyle(
                 style: Theme.of(context).textTheme.subhead,
                 child: subtitle,

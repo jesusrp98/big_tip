@@ -353,10 +353,10 @@ void main() {
   });
 
   testWidgets(
-    'Applies custom text space properties corerctly',
+    'Applies custom subtitle space properties corerctly',
     (tester) async {
       final BigTip _bigTip = BigTip(
-        textSpace: 12,
+        subtitleSpace: 12,
         title: Text('title'),
         subtitle: Text('subtitle'),
       );
