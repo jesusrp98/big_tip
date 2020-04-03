@@ -166,17 +166,85 @@ void main() {
 
   testWidgets(
     'Correct pull of default action widget settings',
-    (tester) async {},
+    (tester) async {
+      final BigTip _bigTip = BigTip(
+        child: Icon(Icons.cake),
+        action: Text('action'),
+        actionCallback: () => null,
+      );
+
+      await tester.pumpWidget(
+        TestPage(_bigTip),
+      );
+
+      // Expecting default action text & theme
+      expect(find.text('action'), findsOneWidget);
+      final button = tester.widget<FlatButton>(find.ancestor(
+        of: find.text('action'),
+        matching: find.byType(FlatButton),
+      ));
+      expect(button.textColor, Color(0xff2196f3));
+    },
   );
 
   testWidgets(
     'Using a custom action text widget with custom properties',
-    (tester) async {},
+    (tester) async {
+      final BigTip _bigTip = BigTip(
+        child: Icon(Icons.cake),
+        action: Text(
+          'action',
+          style: TextStyle(color: Colors.red),
+        ),
+        actionCallback: () => null,
+      );
+
+      await tester.pumpWidget(
+        TestPage(_bigTip),
+      );
+
+      // Expecting custom action text & theme
+      expect(find.text('action'), findsOneWidget);
+      final button = tester.widget<FlatButton>(find.ancestor(
+        of: find.text('action'),
+        matching: find.byType(FlatButton),
+      ));
+      expect(button.textColor, Colors.red);
+    },
   );
 
-  testWidgets('User can activate action callback correctly', (tester) async {});
+  testWidgets('User can activate action callback correctly', (tester) async {
+    bool _pressed = false;
+    final BigTip _bigTip = BigTip(
+      child: Icon(Icons.cake),
+      action: Text('action'),
+      actionCallback: () => _pressed = true,
+    );
 
-  testWidgets('Testing action widget disable capabilities', (tester) async {});
+    await tester.pumpWidget(
+      TestPage(_bigTip),
+    );
+
+    // Presses the action button
+    await tester.tap(find.text('action'));
+    expect(_pressed, true);
+  });
+
+  testWidgets('Testing action widget disable capabilities', (tester) async {
+    bool _pressed = false;
+    final BigTip _bigTip = BigTip(
+      child: Icon(Icons.cake),
+      action: Text('action'),
+    );
+
+    await tester.pumpWidget(
+      TestPage(_bigTip),
+    );
+
+    // Presses the disabled action button
+    await tester.tap(find.text('action'));
+    expect(_pressed, false);
+  });
 
   testWidgets('Applies padding by default', (tester) async {
     final BigTip _bigTip = BigTip(
