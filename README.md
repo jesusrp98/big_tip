@@ -24,8 +24,8 @@ If you want to take a deeper look at the example, take a look at the [example](h
 ```
 BigTip(
   child: Icon(Icons.cake),
-  title: 'The cake is a lie',
-  subtitle: 'Is this a Portal reference?',
+  title: Text('The cake is a lie'),
+  subtitle: Text('Is this a Portal reference?'),
 ),
 ```
 
@@ -34,9 +34,9 @@ You can also provide the user with the ability to interact with the view, via a 
 ```
 BigTip(
   child: Icon(Icons.cake),
-  title: 'The cake is a lie',
-  subtitle: 'Is this a Portal reference?',
-  action: 'CALL GABEN',
+  title: Text('The cake is a lie'),
+  subtitle: Text('Is this a Portal reference?'),
+  action: Text('CALL GABEN'),
   actionCallback: () => print('Ding dong'),
 ),
 ```
