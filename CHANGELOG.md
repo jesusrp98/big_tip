@@ -1,3 +1,14 @@
+## [1.1.0] - April 3rd, 2020
+
+- A copuple and neccesary modifications have been made to the package, and unfortunatelly some breaking changes have been introduced.
+- **BREAKING CHANGE:** Changed `title`, `subtitle` and `action` to be `Widget`parameters, insteead of `String`. This will allow a more customized used of this package.
+- **BREAKING CHANGE:** Deleted all style parameters. If you want to apply style, you could simply apply it directly to the widget itself.
+- Added `subtitleSpace` parameter, to regulate the division between the `title` and `subtitle` widgets.
+- Added a bunch of tests.
+- Fixed quite a few bugs.
+- Added GitHub Actions CI.
+- Updated minium Flutter SDK to v1.10.
+
 ## [1.0.0] - January 24th, 2020
 
 - Now this package is consider **STABLE**: no more breaking changes expected.
