@@ -31,7 +31,7 @@ class BigTip extends StatelessWidget {
   final Widget action;
 
   /// Action that will be performed when the user clicks the action button.
-  final Function() actionCallback;
+  final VoidCallback actionCallback;
 
   const BigTip({
     Key key,
