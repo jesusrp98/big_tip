@@ -1,3 +1,7 @@
+## [1.1.1] - May 11th, 2020
+
+- Make `title` and `subtitle` default text alignment to center
+
 ## [1.1.0] - April 3rd, 2020
 
 - A copuple and neccesary modifications have been made to the package, and unfortunatelly some breaking changes have been introduced.

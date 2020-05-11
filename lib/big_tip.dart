@@ -68,13 +68,15 @@ class BigTip extends StatelessWidget {
               SizedBox(height: space),
             if (title != null)
               DefaultTextStyle(
-                style: Theme.of(context).textTheme.title,
+                style: Theme.of(context).textTheme.headline6,
+                textAlign: TextAlign.center,
                 child: title,
               ),
             if (subtitle != null) ...[
               if (title != null) SizedBox(height: subtitleSpace),
               DefaultTextStyle(
-                style: Theme.of(context).textTheme.subhead,
+                style: Theme.of(context).textTheme.subtitle1,
+                textAlign: TextAlign.center,
                 child: subtitle,
               ),
             ],
