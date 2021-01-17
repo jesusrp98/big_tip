@@ -1,3 +1,7 @@
+## [1.1.1+1] - January 17th, 2021
+
+- Improved test coverage.
+
 ## [1.1.1] - May 11th, 2020
 
 - Make `title` and `subtitle` default text alignment to center

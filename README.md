@@ -1,6 +1,7 @@
 # Big Tip
 
 [![Package](https://img.shields.io/pub/v/big_tip.svg?style=for-the-badge)](https://pub.dartlang.org/packages/big_tip)
+[![Build](https://img.shields.io/github/workflow/status/jesusrp98/big_tip/Flutter%20Package%20CI?style=for-the-badge)](https://github.com/jesusrp98/big_tip/actions)
 [![License](https://img.shields.io/github/license/jesusrp98/big_tip.svg?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Patreon](https://img.shields.io/badge/Support-Patreon-orange.svg?style=for-the-badge)](https://www.patreon.com/jesusrp98)
 [![Stars](https://img.shields.io/github/stars/jesusrp98/big_tip.svg?style=for-the-badge)](https://github.com/jesusrp98/big_tip/stargazers)

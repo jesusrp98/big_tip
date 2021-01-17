@@ -23,6 +23,36 @@ class TestPage extends StatelessWidget {
 }
 
 void main() {
+  group('Argument testing', () {
+    test('check argument assertion', () {
+      expect(() => BigTip(), throwsAssertionError);
+
+      expect(
+        () => BigTip(
+          child: SizedBox(),
+          actionCallback: () => null,
+        ),
+        throwsAssertionError,
+      );
+      expect(
+        () => BigTip(
+          title: SizedBox(),
+          actionCallback: () => null,
+        ),
+        throwsAssertionError,
+      );
+      expect(
+        () => BigTip(
+          subtitle: SizedBox(),
+          actionCallback: () => null,
+        ),
+        throwsAssertionError,
+      );
+
+      expect(() => BigTip(actionCallback: () => null), throwsAssertionError);
+    });
+  });
+
   group('Child testing', () {
     testWidgets('Correct pull of default icon settings', (tester) async {
       final BigTip _bigTip = BigTip(
