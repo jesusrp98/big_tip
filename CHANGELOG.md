@@ -1,3 +1,7 @@
+## [2.0.0] - April 1st, 2021
+
+* Migrated to null-safety.
+
 ## [1.1.1+1] - January 17th, 2021
 
 - Improved test coverage.

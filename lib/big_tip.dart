@@ -9,7 +9,7 @@ class BigTip extends StatelessWidget {
   ///
   /// If this parameters holds a [Icon] widget, an automatic theme will be applied,
   /// setting its size to 100, and using the caption text style's color by default.
-  final Widget child;
+  final Widget? child;
 
   /// Space between the [child] and the text. Default value is 22.
   final double space;
@@ -18,23 +18,23 @@ class BigTip extends StatelessWidget {
   final double subtitleSpace;
 
   /// Outter padding of the view. Default is 32.
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
   /// Main title widget of the view. Usually a [Text] widget.
-  final Widget title;
+  final Widget? title;
 
   /// Secondary widget of the view. Usually a [Text] widget.
-  final Widget subtitle;
+  final Widget? subtitle;
 
   /// Widget that will inform the user about the action
   /// the view can perform, via the [actionCallback] parameter.
-  final Widget action;
+  final Widget? action;
 
   /// Action that will be performed when the user clicks the action button.
-  final VoidCallback actionCallback;
+  final VoidCallback? actionCallback;
 
   const BigTip({
-    Key key,
+    Key? key,
     this.child,
     this.space = 22,
     this.subtitleSpace = 8,
@@ -59,35 +59,35 @@ class BigTip extends StatelessWidget {
             if (child != null)
               IconTheme.merge(
                 data: Theme.of(context).iconTheme.copyWith(
-                      color: Theme.of(context).textTheme.caption.color,
+                      color: Theme.of(context).textTheme.caption!.color,
                       size: 100,
                     ),
-                child: child,
+                child: child!,
               ),
             if (child != null && (title != null || subtitle != null))
               SizedBox(height: space),
             if (title != null)
               DefaultTextStyle(
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.headline6!,
                 textAlign: TextAlign.center,
-                child: title,
+                child: title!,
               ),
             if (subtitle != null) ...[
               if (title != null) SizedBox(height: subtitleSpace),
               DefaultTextStyle(
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.subtitle1!,
                 textAlign: TextAlign.center,
-                child: subtitle,
+                child: subtitle!,
               ),
             ],
             if (action != null) ...[
               Flexible(child: SizedBox.expand()),
               FlatButton(
                 textColor: action is Text && (action as Text).style != null
-                    ? (action as Text).style.color
+                    ? (action as Text).style!.color
                     : Theme.of(context).accentColor,
                 onPressed: actionCallback,
-                child: action,
+                child: action!,
               ),
             ],
           ],

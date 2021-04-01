@@ -145,8 +145,8 @@ void main() {
         // Expecting custom title text & theme
         expect(find.text('title'), findsOneWidget);
         final text = tester.widget<Text>(find.text('title'));
-        expect(text.style.color, Colors.red);
-        expect(text.style.fontSize, 25);
+        expect(text.style!.color, Colors.red);
+        expect(text.style!.fontSize, 25);
         expect(text.textAlign, TextAlign.start);
       },
     );
@@ -199,8 +199,8 @@ void main() {
         // Expecting custom subtitle text & theme
         expect(find.text('subtitle'), findsOneWidget);
         final text = tester.widget<Text>(find.text('subtitle'));
-        expect(text.style.color, Colors.red);
-        expect(text.style.fontSize, 15);
+        expect(text.style!.color, Colors.red);
+        expect(text.style!.fontSize, 15);
         expect(text.textAlign, TextAlign.start);
       },
     );
