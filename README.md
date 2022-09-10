@@ -29,15 +29,17 @@ BigTip(
 ),
 ```
 
-You can also provide the user with the ability to interact with the view, via a `FlatButton` widget. To do that, you can make use of the `action` and `actionCallback` parameters of the widget. By default, this widget will be placed at the bottom of the view.
+You can also provide the user with the ability to interact with the view, using the `action` parameter. For example, you can render a `TextButton` widget in order for the user to perform an action. This widget will be placed at the bottom of the view.
 
 ```
 BigTip(
   child: Icon(Icons.cake),
   title: Text('The cake is a lie'),
   subtitle: Text('Is this a Portal reference?'),
-  action: Text('CALL GABEN'),
-  actionCallback: () => print('Ding dong'),
+  action: TextButton(
+    child: const Text('CALL GABEN'),
+    onPressed: () => print('Ding dong'),
+  ),
 ),
 ```
 
