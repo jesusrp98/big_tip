@@ -1,38 +1,16 @@
-```
-import 'package:big_tip/big_tip.dart';
-import 'package:flutter/material.dart';
+# example
 
-void main() => runApp(MyApp());
+A new Flutter project.
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(),
-    );
-  }
-}
+## Getting Started
 
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Big tip'),
-      ),
-      body: BigTip(
-        icon: Icons.cake,
-        message: 'The cake is a lie',
-        messageStyle: TextStyle(
-          fontSize: 27,
-          fontStyle: FontStyle.italic,
-        ),
-      ),
-    );
-  }
-}
-```
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

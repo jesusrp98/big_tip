@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// Widget that will inform the user about a specific topic.
 /// Information could be transmitted via text, icons or any other widget.
 ///
-/// Also, the user could interact with this view using the [actionCallback].
+/// Also, the user could interact with this view using the [action] parameter.
 class BigTip extends StatelessWidget {
   /// Widget representing the main information point of the view.
   ///
@@ -11,14 +11,14 @@ class BigTip extends StatelessWidget {
   /// setting its size to 100, and using the caption text style's color by default.
   final Widget? child;
 
-  /// Space between the [child] and the text. Default value is 22.
-  final double space;
+  /// Space between the [child] and the [title]. Default value is 16.
+  final double childSpace;
 
   /// Space between [tile] and [subtitle] widgets. Default value is 8.
   final double subtitleSpace;
 
   /// Outter padding of the view. Default is 32.
-  final EdgeInsets? padding;
+  final EdgeInsets padding;
 
   /// Main title widget of the view. Usually a [Text] widget.
   final Widget? title;
@@ -26,36 +26,29 @@ class BigTip extends StatelessWidget {
   /// Secondary widget of the view. Usually a [Text] widget.
   final Widget? subtitle;
 
-  /// Widget that will inform the user about the action
-  /// the view can perform, via the [actionCallback] parameter.
+  /// Optional parameter that allows to place an 'actionable' widget at
+  /// the bottom of the view.
   final Widget? action;
 
-  /// Action that will be performed when the user clicks the action button.
-  final VoidCallback? actionCallback;
-
   const BigTip({
-    Key? key,
+    super.key,
     this.child,
-    this.space = 22,
+    this.childSpace = 16,
     this.subtitleSpace = 8,
-    this.padding,
+    this.padding = const EdgeInsets.all(32),
     this.title,
     this.subtitle,
     this.action,
-    this.actionCallback,
-  })  : assert(action != null || actionCallback == null),
-        assert(child != null || title != null || subtitle != null),
-        super(key: key);
+  }) : assert(child != null || title != null || subtitle != null);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: padding ?? EdgeInsets.all(32),
+        padding: padding,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            if (action != null) Flexible(child: SizedBox.expand()),
+          children: [
+            if (action != null) const Flexible(child: SizedBox.expand()),
             if (child != null)
               IconTheme.merge(
                 data: Theme.of(context).iconTheme.copyWith(
@@ -65,7 +58,7 @@ class BigTip extends StatelessWidget {
                 child: child!,
               ),
             if (child != null && (title != null || subtitle != null))
-              SizedBox(height: space),
+              SizedBox(height: childSpace),
             if (title != null)
               DefaultTextStyle(
                 style: Theme.of(context).textTheme.headline6!,
@@ -81,14 +74,8 @@ class BigTip extends StatelessWidget {
               ),
             ],
             if (action != null) ...[
-              Flexible(child: SizedBox.expand()),
-              FlatButton(
-                textColor: action is Text && (action as Text).style != null
-                    ? (action as Text).style!.color
-                    : Theme.of(context).accentColor,
-                onPressed: actionCallback,
-                child: action!,
-              ),
+              const Flexible(child: SizedBox.expand()),
+              action!,
             ],
           ],
         ),

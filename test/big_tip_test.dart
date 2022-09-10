@@ -5,7 +5,7 @@ import 'package:big_tip/big_tip.dart';
 class TestPage extends StatelessWidget {
   final Widget test;
 
-  const TestPage(this.test);
+  const TestPage(this.test, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class TestPage extends StatelessWidget {
       home: Builder(
         builder: (context) => Scaffold(
           appBar: AppBar(
-            title: Text('AppBar'),
+            title: const Text('AppBar'),
           ),
           body: test,
         ),
@@ -26,44 +26,19 @@ void main() {
   group('Argument testing', () {
     test('check argument assertion', () {
       expect(() => BigTip(), throwsAssertionError);
-
-      expect(
-        () => BigTip(
-          child: SizedBox(),
-          actionCallback: () => null,
-        ),
-        throwsAssertionError,
-      );
-      expect(
-        () => BigTip(
-          title: SizedBox(),
-          actionCallback: () => null,
-        ),
-        throwsAssertionError,
-      );
-      expect(
-        () => BigTip(
-          subtitle: SizedBox(),
-          actionCallback: () => null,
-        ),
-        throwsAssertionError,
-      );
-
-      expect(() => BigTip(actionCallback: () => null), throwsAssertionError);
     });
   });
 
   group('Child testing', () {
     testWidgets('Correct pull of default icon settings', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         child: Icon(Icons.cake),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Expecting default cake icon & theme
       expect(find.byIcon(Icons.cake), findsOneWidget);
       final iconTheme = tester.widget<IconTheme>(
         find
@@ -74,11 +49,11 @@ void main() {
             .first,
       );
       expect(iconTheme.data.size, 100);
-      expect(iconTheme.data.color, Color(0x8a000000));
+      expect(iconTheme.data.color, const Color(0x8a000000));
     });
 
     testWidgets('Using a custom icon with custom properties', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         child: Icon(
           Icons.cake,
           size: 50,
@@ -87,10 +62,9 @@ void main() {
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Expecting default cake icon & theme
       expect(find.byIcon(Icons.cake), findsOneWidget);
       final icon = tester.widget<Icon>(find.byIcon(Icons.cake));
       expect(icon.size, 50);
@@ -100,15 +74,14 @@ void main() {
 
   group('Title testing', () {
     testWidgets('Correct pull of default title settings', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         title: Text('title'),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Expecting default title text & theme
       expect(find.text('title'), findsOneWidget);
       final defaultTextStyle = tester.widget<DefaultTextStyle>(
         find
@@ -118,7 +91,7 @@ void main() {
             )
             .first,
       );
-      expect(defaultTextStyle.style.color, Color(0xdd000000));
+      expect(defaultTextStyle.style.color, const Color(0xdd000000));
       expect(defaultTextStyle.style.fontSize, 20);
       expect(defaultTextStyle.style.fontWeight, FontWeight.w500);
       expect(defaultTextStyle.textAlign, TextAlign.center);
@@ -127,7 +100,7 @@ void main() {
     testWidgets(
       'Using a custom title text widget with custom properties',
       (tester) async {
-        final BigTip _bigTip = BigTip(
+        const bigTip = BigTip(
           title: Text(
             'title',
             textAlign: TextAlign.start,
@@ -139,10 +112,9 @@ void main() {
         );
 
         await tester.pumpWidget(
-          TestPage(_bigTip),
+          const TestPage(bigTip),
         );
 
-        // Expecting custom title text & theme
         expect(find.text('title'), findsOneWidget);
         final text = tester.widget<Text>(find.text('title'));
         expect(text.style!.color, Colors.red);
@@ -154,15 +126,14 @@ void main() {
 
   group('Subtitle testing', () {
     testWidgets('Correct pull of default subtitle settings', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         subtitle: Text('subtitle'),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Expecting default subtitle text & theme
       expect(find.text('subtitle'), findsOneWidget);
       final defaultTextStyle = tester.widget<DefaultTextStyle>(
         find
@@ -172,7 +143,7 @@ void main() {
             )
             .first,
       );
-      expect(defaultTextStyle.style.color, Color(0xdd000000));
+      expect(defaultTextStyle.style.color, const Color(0xdd000000));
       expect(defaultTextStyle.style.fontSize, 16);
       expect(defaultTextStyle.style.fontWeight, FontWeight.w400);
       expect(defaultTextStyle.textAlign, TextAlign.center);
@@ -181,7 +152,7 @@ void main() {
     testWidgets(
       'Using a custom subtitle text widget with custom properties',
       (tester) async {
-        final BigTip _bigTip = BigTip(
+        const bigTip = BigTip(
           subtitle: Text(
             'subtitle',
             textAlign: TextAlign.start,
@@ -193,10 +164,9 @@ void main() {
         );
 
         await tester.pumpWidget(
-          TestPage(_bigTip),
+          const TestPage(bigTip),
         );
 
-        // Expecting custom subtitle text & theme
         expect(find.text('subtitle'), findsOneWidget);
         final text = tester.widget<Text>(find.text('subtitle'));
         expect(text.style!.color, Colors.red);
@@ -208,138 +178,73 @@ void main() {
 
   group('Action widget testing', () {
     testWidgets(
-      'Correct pull of default action widget settings',
+      'Is correctly rendered on the screen',
       (tester) async {
-        final BigTip _bigTip = BigTip(
-          child: Icon(Icons.cake),
+        const bigTip = BigTip(
           action: Text('action'),
-          actionCallback: () => null,
-        );
-
-        await tester.pumpWidget(
-          TestPage(_bigTip),
-        );
-
-        // Expecting default action text & theme
-        expect(find.text('action'), findsOneWidget);
-        final button = tester.widget<FlatButton>(find.ancestor(
-          of: find.text('action'),
-          matching: find.byType(FlatButton),
-        ));
-        expect(button.textColor, Color(0xff2196f3));
-      },
-    );
-
-    testWidgets(
-      'Using a custom action text widget with custom properties',
-      (tester) async {
-        final BigTip _bigTip = BigTip(
           child: Icon(Icons.cake),
-          action: Text(
-            'action',
-            style: TextStyle(color: Colors.red),
-          ),
-          actionCallback: () => null,
         );
 
         await tester.pumpWidget(
-          TestPage(_bigTip),
+          const TestPage(bigTip),
         );
 
-        // Expecting custom action text & theme
         expect(find.text('action'), findsOneWidget);
-        final button = tester.widget<FlatButton>(find.ancestor(
-          of: find.text('action'),
-          matching: find.byType(FlatButton),
-        ));
-        expect(button.textColor, Colors.red);
       },
     );
-
-    testWidgets('User can activate action callback correctly', (tester) async {
-      bool _pressed = false;
-      final BigTip _bigTip = BigTip(
-        child: Icon(Icons.cake),
-        action: Text('action'),
-        actionCallback: () => _pressed = true,
-      );
-
-      await tester.pumpWidget(
-        TestPage(_bigTip),
-      );
-
-      // Presses the action button
-      await tester.tap(find.text('action'));
-      expect(_pressed, true);
-    });
-
-    testWidgets('Testing action widget disable capabilities', (tester) async {
-      bool _pressed = false;
-      final BigTip _bigTip = BigTip(
-        child: Icon(Icons.cake),
-        action: Text('action'),
-      );
-
-      await tester.pumpWidget(
-        TestPage(_bigTip),
-      );
-
-      // Presses the disabled action button
-      await tester.tap(find.text('action'));
-      expect(_pressed, false);
-    });
   });
 
   group('Padding & spacing testing', () {
     testWidgets('Applies padding by default', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         child: Icon(Icons.cake),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Expecting default padding (32)
-      final padding = tester.widget<Padding>(find.ancestor(
-        of: find.byIcon(Icons.cake),
-        matching: find.byType(Padding),
-      ));
-      expect(padding.padding, EdgeInsets.all(32));
+      final padding = tester.widget<Padding>(
+        find.ancestor(
+          of: find.byIcon(Icons.cake),
+          matching: find.byType(Padding),
+        ),
+      );
+      expect(padding.padding, const EdgeInsets.all(32));
     });
 
     testWidgets(
       'Applies custom padding properties corerctly',
       (tester) async {
-        final BigTip _bigTip = BigTip(
+        const bigTip = BigTip(
           padding: EdgeInsets.all(16),
           child: Icon(Icons.cake),
         );
 
         await tester.pumpWidget(
-          TestPage(_bigTip),
+          const TestPage(bigTip),
         );
 
-        // Expecting default padding (32)
-        final padding = tester.widget<Padding>(find.ancestor(
-          of: find.byIcon(Icons.cake),
-          matching: find.byType(Padding),
-        ));
-        expect(padding.padding, EdgeInsets.all(16));
+        final padding = tester.widget<Padding>(
+          find.ancestor(
+            of: find.byIcon(Icons.cake),
+            matching: find.byType(Padding),
+          ),
+        );
+        expect(padding.padding, const EdgeInsets.all(16));
       },
     );
 
     testWidgets('Applies child space by default', (tester) async {
-      final BigTip _bigTip = BigTip(
-        child: Icon(Icons.cake),
+      const bigTip = BigTip(
         title: Text('title'),
+        child: Icon(Icons.cake),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Expecting default child space (22)
       final childSpace = tester.widget<SizedBox>(
         find
             .descendant(
@@ -348,23 +253,22 @@ void main() {
             )
             .at(1),
       );
-      expect(childSpace.height, 22);
+      expect(childSpace.height, 16);
     });
 
     testWidgets(
       'Applies custom child space properties corerctly',
       (tester) async {
-        final BigTip _bigTip = BigTip(
-          space: 16,
-          child: Icon(Icons.cake),
+        const bigTip = BigTip(
+          childSpace: 15,
           title: Text('title'),
+          child: Icon(Icons.cake),
         );
 
         await tester.pumpWidget(
-          TestPage(_bigTip),
+          const TestPage(bigTip),
         );
 
-        // Expecting default child space (22)
         final childSpace = tester.widget<SizedBox>(
           find
               .descendant(
@@ -373,21 +277,20 @@ void main() {
               )
               .at(1),
         );
-        expect(childSpace.height, 16);
+        expect(childSpace.height, 15);
       },
     );
 
     testWidgets('Applies text space by default', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         title: Text('title'),
         subtitle: Text('subtitle'),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Expecting default child space (22)
       final childSpace = tester.widget<SizedBox>(
         find.descendant(
           of: find.byType(BigTip),
@@ -400,135 +303,126 @@ void main() {
     testWidgets(
       'Applies custom subtitle space properties corerctly',
       (tester) async {
-        final BigTip _bigTip = BigTip(
+        const bigTip = BigTip(
           subtitleSpace: 12,
           title: Text('title'),
           subtitle: Text('subtitle'),
         );
 
         await tester.pumpWidget(
-          TestPage(_bigTip),
+          const TestPage(bigTip),
         );
 
-        // Expecting default child space (22)
-        final childSpace = tester.widget<SizedBox>(
+        final subtitleSpace = tester.widget<SizedBox>(
           find.descendant(
             of: find.byType(BigTip),
             matching: find.byType(SizedBox),
           ),
         );
-        expect(childSpace.height, 12);
+        expect(subtitleSpace.height, 12);
       },
     );
   });
 
   group('Layout testing', () {
     testWidgets('Renders child-only layout', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         child: Icon(Icons.cake),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Finds only the SizedBox containing the icon itself
       expect(find.byType(SizedBox), findsOneWidget);
     });
 
     testWidgets('Renders title-only layout', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         title: Text('title'),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Finds no separator
       expect(find.byType(SizedBox), findsNothing);
     });
 
     testWidgets('Renders subtitle-only layout', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         subtitle: Text('subtitle'),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Finds no separator
       expect(find.byType(SizedBox), findsNothing);
     });
 
     testWidgets('Renders child-and-title-only layout', (tester) async {
-      final BigTip _bigTip = BigTip(
-        child: Icon(Icons.cake),
+      const bigTip = BigTip(
         title: Text('title'),
+        child: Icon(Icons.cake),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Finds the Icon child and its separator
       expect(find.byType(SizedBox), findsNWidgets(2));
     });
 
     testWidgets('Renders child-and-subtitle-only layout', (tester) async {
-      final BigTip _bigTip = BigTip(
-        child: Icon(Icons.cake),
+      const bigTip = BigTip(
         subtitle: Text('subtitle'),
+        child: Icon(Icons.cake),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Finds the Icon child and its separator
       expect(find.byType(SizedBox), findsNWidgets(2));
     });
 
     testWidgets('Renders title-and-subtitle-only layout', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         title: Text('title'),
         subtitle: Text('subtitle'),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Finds only the text spacer widget
       expect(find.byType(SizedBox), findsOneWidget);
     });
 
     testWidgets('Renders with action correctly', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         title: Text('title'),
         action: Text('Action'),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Finds only the text spacer widget
       expect(find.byType(Flexible), findsNWidgets(2));
     });
 
     testWidgets('Renders without action correctly', (tester) async {
-      final BigTip _bigTip = BigTip(
+      const bigTip = BigTip(
         title: Text('title'),
         subtitle: Text('subtitle'),
       );
 
       await tester.pumpWidget(
-        TestPage(_bigTip),
+        const TestPage(bigTip),
       );
 
-      // Finds only the text spacer widget
       expect(find.byType(Flexible), findsNothing);
     });
   });
