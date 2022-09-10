@@ -1,6 +1,12 @@
+## [3.0.0] - September 10th, 2022
+
+- **BREAKING CHANGE:** Set min Flutter version to 3.3.0.
+- **BREAKING CHANGE:** Removed ability to automatically place a button using the `action` parameter. Now you can do it directly using that parameter.
+- **BREAKING CHANGE:** Renamed `space` parameter to `childSpace`.
+
 ## [2.0.0] - April 1st, 2021
 
-* Migrated to null-safety.
+- Migrated to null-safety.
 
 ## [1.1.1+1] - January 17th, 2021
 
