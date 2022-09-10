@@ -21,7 +21,7 @@ There's also an optional action parameter, which provides the ability to call fu
 
 If you want to take a deeper look at the example, take a look at the [example](https://github.com/jesusrp98/big_tip/tree/master/example) folder provided with the project.
 
-```
+``` dart
 BigTip(
   child: Icon(Icons.cake),
   title: Text('The cake is a lie'),
@@ -31,7 +31,7 @@ BigTip(
 
 You can also provide the user with the ability to interact with the view, using the `action` parameter. For example, you can render a `TextButton` widget in order for the user to perform an action. This widget will be placed at the bottom of the view.
 
-```
+``` dart
 BigTip(
   child: Icon(Icons.cake),
   title: Text('The cake is a lie'),
