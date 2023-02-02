@@ -7,14 +7,15 @@ import 'package:flutter/material.dart';
 class BigTip extends StatelessWidget {
   /// Widget representing the main information point of the view.
   ///
-  /// If this parameters holds a [Icon] widget, an automatic theme will be applied,
-  /// setting its size to 100, and using the caption text style's color by default.
+  /// If this parameters holds a [Icon] widget, an automatic theme
+  /// will be applied, setting its size to 100, and using the caption
+  /// text style's color by default.
   final Widget? child;
 
   /// Space between the [child] and the [title]. Default value is 16.
   final double childSpace;
 
-  /// Space between [tile] and [subtitle] widgets. Default value is 8.
+  /// Space between `tile` and [subtitle] widgets. Default value is 8.
   final double subtitleSpace;
 
   /// Outter padding of the view. Default is 32.
@@ -39,7 +40,10 @@ class BigTip extends StatelessWidget {
     this.title,
     this.subtitle,
     this.action,
-  }) : assert(child != null || title != null || subtitle != null);
+  }) : assert(
+          child != null || title != null || subtitle != null,
+          'One of the these parameters should not be null',
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +56,7 @@ class BigTip extends StatelessWidget {
             if (child != null)
               IconTheme.merge(
                 data: Theme.of(context).iconTheme.copyWith(
-                      color: Theme.of(context).textTheme.caption!.color,
+                      color: Theme.of(context).textTheme.bodySmall?.color,
                       size: 100,
                     ),
                 child: child!,
@@ -61,14 +65,14 @@ class BigTip extends StatelessWidget {
               SizedBox(height: childSpace),
             if (title != null)
               DefaultTextStyle(
-                style: Theme.of(context).textTheme.headline6!,
+                style: Theme.of(context).textTheme.titleLarge!,
                 textAlign: TextAlign.center,
                 child: title!,
               ),
             if (subtitle != null) ...[
               if (title != null) SizedBox(height: subtitleSpace),
               DefaultTextStyle(
-                style: Theme.of(context).textTheme.subtitle1!,
+                style: Theme.of(context).textTheme.titleMedium!,
                 textAlign: TextAlign.center,
                 child: subtitle!,
               ),

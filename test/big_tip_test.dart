@@ -1,6 +1,6 @@
+import 'package:big_tip/big_tip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:big_tip/big_tip.dart';
 
 class TestPage extends StatelessWidget {
   final Widget test;
@@ -25,7 +25,7 @@ class TestPage extends StatelessWidget {
 void main() {
   group('Argument testing', () {
     test('check argument assertion', () {
-      expect(() => BigTip(), throwsAssertionError);
+      expect(BigTip.new, throwsAssertionError);
     });
   });
 

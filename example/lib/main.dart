@@ -13,8 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'big_tip',
       theme: ThemeData(
-        colorScheme: const ColorScheme.light(
-          secondary: Colors.orange,
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.orange,
         ),
       ),
       home: const HomePage(),
